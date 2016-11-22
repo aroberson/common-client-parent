@@ -26,10 +26,10 @@ public class SCCLMessageBundle extends ListResourceBundle
     private static final Object[][] CONTENTS = 
     {
         {"SCCL2001E", "SCCL2001E Unexpected error on request timeout checking. Reason [{0}]"},
-        {"SCCL2002U", "SCCL2002U "},
-        {"SCCL2003U", "SCCL2003U "},
-        {"SCCL2004U", "SCCL2004U "},
-        {"SCCL2005U", "SCCL2005U "},
+        {"SCCL2002E", "SCCL2002E Unexpected error on callback [{0}]. Reason [{1}]"},
+        {"SCCL2003I", "SCCL2003I Shutting down the scheduled executor service."},
+        {"SCCL2004I", "SCCL2004I Waiting for pending requests to complete."},
+        {"SCCL2005E", "SCCL2005E The service request [{0}] has timed out after [{1}] msec."},
         {"SCCL2006U", "SCCL2006U "},  
         {"SCCL2007U", "SCCL2007U "},
         {"SCCL2008U", "SCCL2008U "},

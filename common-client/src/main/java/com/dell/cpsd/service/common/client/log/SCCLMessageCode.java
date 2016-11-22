@@ -26,10 +26,10 @@ import com.dell.cpsd.service.common.client.i18n.SCCLMessageBundle;
 public enum SCCLMessageCode
 {
     TIMEOUT_TASK_CHECK_E(2001,      "SCCL2001E"),
-    REUSE_2002_U(2002,              "SCCL2002U"),
-    REUSE_2003_U(2003,              "SCCL2003U"),
-    REUSE_2004_U(2004,              "SCCL2004U"),
-    REUSE_2005_U(2005,              "SCCL2005U"),
+    ERROR_CALLBACK_FAIL_E(2002,     "SCCL2002E"),
+    EXECUTOR_SHUTDOWN_I(2003,       "SCCL2003I"),
+    WAIT_ON_REQUESTS_I(2004,        "SCCL2004I"),
+    MESSAGE_TIMEOUT_E(2005,         "SCCL2005E"),
     REUSE_2006_U(2006,              "SCCL2006U"),
     REUSE_2007_U(2007,              "SCCL2007U"),
     REUSE_2008_U(2008,              "SCCL2008U"),
