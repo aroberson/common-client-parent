@@ -94,30 +94,162 @@ public abstract class AbstractServiceCallbackManager implements ITimeoutTaskMana
     
     
     /**
-     * This creates the <code>ScheduledExecutorService</code> for this manager.
+     * This returns true if this manager is shutting down.
      * 
-     * @param   initialDelay    The time to delay first execution.
-     * @param   delay           The period between successive executions.
-     * @param   timeUnit        The <code>TimeUnit</code> for the delays.
-     * 
-     * @return  The <code>ScheduledExecutorService</code> for this manager.
+     * @return  True if this manager is shutting down.
      * 
      * @since   1.0
      */
-    protected ScheduledExecutorService makeScheduledExecutorService(
-            long initialDelay, long delay, TimeUnit timeUnit)
+    public boolean isShutDown()
     {
-        TimeoutTask timeoutTask = new TimeoutTask(this);
+        return this.shutdown;
+    }
+    
+    
+    
+    /**
+     * This adds a service task, with its corresponding request identifier, to
+     * the managed requests.
+     * 
+     * @param   requestId       The request identifier.
+     * @param   serviceTask     The service task to add.
+     * 
+     * @since   1.0
+     */
+    public void addServiceTask(final String requestId,
+                        final ServiceTask<IServiceCallback<?>> serviceTask)
+    {
+        if (requestId == null)
+        {
+            return;
+        }
         
-        final ScheduledExecutorService executorService = 
-                                Executors.newSingleThreadScheduledExecutor();
+        if (serviceTask == null)
+        {
+            return;
+        }
         
-        executorService.scheduleWithFixedDelay(
-                    timeoutTask, initialDelay, delay, TimeUnit.MILLISECONDS);
+        // add the callback using the requestId identifier as key
+        synchronized(this.requests)
+        {
+            this.requests.put(requestId, serviceTask);
+        }        
+    }
+    
+    
+    /**
+     * This removes the service task with the specified request identifier
+     * 
+     * @param   requestId       The request identifier.
+     * 
+     * @return  The serivce task with the specified identifier, or null.
+     * 
+     * @since   1.0
+     */
+    public ServiceTask<IServiceCallback<?>> removeServiceTask(final String requestId)
+    {
+        synchronized(this.requests)
+        {
+            return this.requests.remove(requestId);
+        }
+    }
+    
+    
+  
+    /**
+     * This returns the service task using the specified request identifier
+     * 
+     * @param   requestId       The request identifier.
+     * 
+     * @return  The serivce task with the specified identifier, or null.
+     * 
+     * @since   1.0
+     */
+    public ServiceTask<IServiceCallback<?>> getServiceTask(final String requestId)
+    {
+        synchronized(this.requests)
+        {
+            return this.requests.get(requestId);
+        }
+    }
+    
+    
+    /**
+     * This returns the <code>IServiceCallback></code> for the specified
+     * request identifier, or null.
+     * 
+     * @param   requestId   The request identifier.
+     * 
+     * @return  The service callback for the identifier, or null.
+     * 
+     * @since   1.0
+     */
+    public IServiceCallback<?> removeServiceCallback(final String requestId)
+    {
+        if (requestId == null)
+        {
+            return null;
+        }
         
-        return executorService;
+        ServiceTask<IServiceCallback<?>> task = null;
+        
+        synchronized(this.requests)
+        {
+            task = this.requests.remove(requestId);
+        }
+        
+        if (task == null)
+        {
+            return null;
+        }
+        
+        return task.getServiceCallback();
     }
 
+     
+    /**
+     * This cancels the request with the specified identifier.
+     * 
+     * @param   requestId   The request identifier.
+     * 
+     * @since   1.0
+     */
+    public boolean cancel(final String requestId)
+    {
+        if (requestId == null)
+        {
+            return false;
+        }
+        
+        ServiceTask<IServiceCallback<?>> task = null;
+        
+        synchronized(this.requests)
+        {
+            task = this.requests.remove(requestId);
+        }
+        
+        return (task != null);
+    }
+
+    
+    /**
+     * This releases any resources associated with this manager.
+     * 
+     * @since   1.0
+     */
+    public void release()
+    {
+        // set the shutdown flag which will cause requests to be rejected
+        this.shutdown = true;
+        
+        LOGGER.info(SCCLMessageCode.EXECUTOR_SHUTDOWN_I.getMessageCode());
+        this.shutdown(this.executorService);
+
+        // wait for the current set of requests to complete and clear down
+        LOGGER.info(SCCLMessageCode.WAIT_ON_REQUESTS_I.getMessageCode());
+        this.waitForRequests(10000l);
+    }
+    
     
     /**
      * {@inheritDoc}
@@ -191,46 +323,28 @@ public abstract class AbstractServiceCallbackManager implements ITimeoutTaskMana
     
     
     /**
-     * This cancels the request with the specified identifier.
+     * This creates the <code>ScheduledExecutorService</code> for this manager.
      * 
-     * @param   requestId   The request identifier.
+     * @param   initialDelay    The time to delay first execution.
+     * @param   delay           The period between successive executions.
+     * @param   timeUnit        The <code>TimeUnit</code> for the delays.
      * 
-     * @since   1.0
-     */
-    public boolean cancel(final String requestId)
-    {
-        if (requestId == null)
-        {
-            return false;
-        }
-        
-        ServiceTask<IServiceCallback<?>> task = null;
-        
-        synchronized(this.requests)
-        {
-            task = this.requests.remove(requestId);
-        }
-        
-        return (task != null);
-    }
-
-    
-    /**
-     * This releases any resources associated with this manager.
+     * @return  The <code>ScheduledExecutorService</code> for this manager.
      * 
      * @since   1.0
      */
-    public void release()
+    protected ScheduledExecutorService makeScheduledExecutorService(
+            long initialDelay, long delay, TimeUnit timeUnit)
     {
-        // set the shutdown flag which will cause requests to be rejected
-        this.shutdown = true;
+        TimeoutTask timeoutTask = new TimeoutTask(this);
         
-        LOGGER.info(SCCLMessageCode.EXECUTOR_SHUTDOWN_I.getMessageCode());
-        this.shutdown(this.executorService);
-
-        // wait for the current set of requests to complete and clear down
-        LOGGER.info(SCCLMessageCode.WAIT_ON_REQUESTS_I.getMessageCode());
-        this.waitForRequests(10000l);
+        final ScheduledExecutorService executorService = 
+                                Executors.newSingleThreadScheduledExecutor();
+        
+        executorService.scheduleWithFixedDelay(
+                    timeoutTask, initialDelay, delay, TimeUnit.MILLISECONDS);
+        
+        return executorService;
     }
     
     
@@ -320,39 +434,6 @@ public abstract class AbstractServiceCallbackManager implements ITimeoutTaskMana
             // preserve interrupt status
             Thread.currentThread().interrupt();
         }
-    }
-    
-    
-    /**
-     * This returns the <code>IServiceCallback></code> for the specified
-     * request identifier, or null.
-     * 
-     * @param   requestId   The request identifier.
-     * 
-     * @return  The service callback for the identifier, or null.
-     * 
-     * @since   1.0
-     */
-    protected IServiceCallback<?> retrieveServiceCallback(final String requestId)
-    {
-        if (requestId == null)
-        {
-            return null;
-        }
-        
-        ServiceTask<IServiceCallback<?>> task = null;
-        
-        synchronized(this.requests)
-        {
-            task = this.requests.remove(requestId);
-        }
-        
-        if (task == null)
-        {
-            return null;
-        }
-        
-        return task.getServiceCallback();
     }
     
     
