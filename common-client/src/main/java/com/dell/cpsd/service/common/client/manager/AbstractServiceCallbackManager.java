@@ -239,6 +239,12 @@ public abstract class AbstractServiceCallbackManager implements ITimeoutTaskMana
      */
     public void release()
     {
+        // if the manager has already been shutdown then return
+        if (this.shutdown)
+        {
+            return;
+        }
+        
         // set the shutdown flag which will cause requests to be rejected
         this.shutdown = true;
         
