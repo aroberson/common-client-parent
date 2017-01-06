@@ -30,8 +30,8 @@ public enum SCCLMessageCode
     EXECUTOR_SHUTDOWN_I(2003,       "SCCL2003I"),
     WAIT_ON_REQUESTS_I(2004,        "SCCL2004I"),
     MESSAGE_TIMEOUT_E(2005,         "SCCL2005E"),
-    REUSE_2006_U(2006,              "SCCL2006U"),
-    REUSE_2007_U(2007,              "SCCL2007U"),
+    PUBLISH_MESSAGE_FAIL_E(2006,    "SCCL2006E"),
+    MANAGER_SHUTDOWN_E(2007,        "SCCL2007E"),
     REUSE_2008_U(2008,              "SCCL2008U"),
     REUSE_2009_U(2009,              "SCCL2009U"),
     REUSE_2010_U(2010,              "SCCL2010U");
