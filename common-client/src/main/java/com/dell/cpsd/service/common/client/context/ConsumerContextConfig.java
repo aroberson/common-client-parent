@@ -30,6 +30,11 @@ import org.springframework.context.annotation.Bean;
 public class ConsumerContextConfig implements IConsumerContextConfig
 {
     /*
+     * The container identifier
+     */
+    private static final String CONTAINER_ID = "container.id";
+    
+    /*
      * The name of the consumer.
      */
     private String consumerName;
@@ -79,7 +84,7 @@ public class ConsumerContextConfig implements IConsumerContextConfig
 
         builder.append(this.consumerName());
         builder.append(".");
-        builder.append(this.getHostName());
+        builder.append(this.getContainerId());
         
         final String uuid = UUID.randomUUID().toString();
         builder.append(".");
@@ -101,21 +106,28 @@ public class ConsumerContextConfig implements IConsumerContextConfig
     
     
     /**
-     * This returns the name of the host.
+     * This returns the container id or the name of the host.
      * 
      * @return  The name of the host.
      * 
      * @since   1.0
      */
-    protected String getHostName()
+    protected String getContainerId()
     {
-        try
+        String containerId = System.getProperty(CONTAINER_ID);
+        
+        if (containerId == null)
         {
-            return InetAddress.getLocalHost().getHostName();
+            try
+            {
+                containerId = InetAddress.getLocalHost().getHostName();
+            }
+            catch (UnknownHostException e)
+            {
+                throw new RuntimeException("Unable to identify hostname", e);
+            }
         }
-        catch (UnknownHostException e)
-        {
-            throw new RuntimeException("Unable to identify hostname", e);
-        }
+        
+        return containerId;
     }
 }
