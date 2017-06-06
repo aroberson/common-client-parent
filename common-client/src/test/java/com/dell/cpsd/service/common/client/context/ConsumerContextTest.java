@@ -3,9 +3,9 @@ package com.dell.cpsd.service.common.client.context;
 import org.junit.Test;
 import org.springframework.core.env.AbstractEnvironment;
 import org.springframework.core.env.Environment;
-import org.springframework.core.env.StandardEnvironment;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 /**
  * Unit tests for ConsumerContext.

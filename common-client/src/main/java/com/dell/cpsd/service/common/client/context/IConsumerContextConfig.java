@@ -25,7 +25,7 @@ public interface IConsumerContextConfig
      * 
      * @since   1.0
      */
-    public String consumerName();
+    String consumerName();
     
     
     /**
@@ -35,7 +35,7 @@ public interface IConsumerContextConfig
      * 
      * @since   1.0
      */
-    public String consumerUuid();
+    String consumerUuid();
     
     
     /**
@@ -45,5 +45,5 @@ public interface IConsumerContextConfig
      * 
      * @since   1.0
      */
-    public boolean stateful();
+    boolean stateful();
 }

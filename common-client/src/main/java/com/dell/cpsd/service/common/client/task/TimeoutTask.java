@@ -6,7 +6,6 @@
 package com.dell.cpsd.service.common.client.task;
 
 import com.dell.cpsd.common.logging.ILogger;
-
 import com.dell.cpsd.service.common.client.log.SCCLLoggingManager;
 import com.dell.cpsd.service.common.client.log.SCCLMessageCode;
 
