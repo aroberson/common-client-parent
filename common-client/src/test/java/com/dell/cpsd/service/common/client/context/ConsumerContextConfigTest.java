@@ -34,6 +34,7 @@ public class ConsumerContextConfigTest
     @Test
     public void consumerUuid()
     {
+        System.setProperty("container.id", "CONTAINER_NAME");
         String name = "test name";
         ConsumerContextConfig configToTest = new ConsumerContextConfig(name, true);
 
