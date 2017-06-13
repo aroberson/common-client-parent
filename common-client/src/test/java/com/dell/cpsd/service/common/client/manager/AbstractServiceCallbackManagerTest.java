@@ -31,16 +31,13 @@ import static org.junit.Assert.fail;
 public class AbstractServiceCallbackManagerTest
 {
     private boolean isHandleServiceTimeoutCalled;
-    private boolean isreleaseCalled;
 
     private AbstractServiceCallbackManager serviceCallbackManagerToTest;
 
     @Before
     public void setUp() throws Exception
     {
-        serviceCallbackManagerToTest = new AbstractServiceCallbackManager()
-        {
-        };
+        serviceCallbackManagerToTest = new AbstractServiceCallbackManagerToTest();
     }
     @After
     public void tearDown()
@@ -112,30 +109,37 @@ public class AbstractServiceCallbackManagerTest
     }
 
     @Test
-    public void release() throws Exception
+    public void releaseTimeout() throws Exception
     {
-        isreleaseCalled = false;
         String requestId = "request-1";
         long timeout = 10;
         ServiceCallback<ServiceResponse<?>> expectedCallback = new ServiceCallback<>();
         ServiceTask<IServiceCallback<?>> task = new ServiceTask<>(requestId, expectedCallback, timeout);
 
-//        serviceCallbackManagerToTest = new AbstractServiceCallbackManager()
-//        {
-//            @Override
-//            protected boolean waitForRequests(long timeout)
-//            {
-//                isreleaseCalled = true;
-//                return true;
-//            }
-//
-//        };
+        AbstractServiceCallbackManager serviceCallbackManagerToTest = new AbstractServiceCallbackManagerToTest(500);
         serviceCallbackManagerToTest.addServiceTask(requestId, task);
         serviceCallbackManagerToTest.release();
         ServiceTask<IServiceCallback<?>> cancelledTask = serviceCallbackManagerToTest.getServiceTask(requestId);
 
         assertTrue(serviceCallbackManagerToTest.isShutDown());
-//        assertTrue(isreleaseCalled);
+        assertNull(cancelledTask);
+
+    }
+
+    @Test
+    public void release() throws Exception
+    {
+        String requestId = "request-1";
+        long timeout = 10;
+        ServiceCallback<ServiceResponse<?>> expectedCallback = new ServiceCallback<>();
+        ServiceTask<IServiceCallback<?>> task = new ServiceTask<>(requestId, expectedCallback, timeout);
+
+        AbstractServiceCallbackManager serviceCallbackManagerToTest = new FastAbstractServiceCallbackManagerToTest(10000);
+        serviceCallbackManagerToTest.addServiceTask(requestId, task);
+        serviceCallbackManagerToTest.release();
+        ServiceTask<IServiceCallback<?>> cancelledTask = serviceCallbackManagerToTest.getServiceTask(requestId);
+
+        assertTrue(serviceCallbackManagerToTest.isShutDown());
         assertNull(cancelledTask);
 
     }
@@ -228,7 +232,8 @@ public class AbstractServiceCallbackManagerTest
                 return ++isDoneCnt > 2;
             }
         };
-        ServiceTask<IServiceCallback<?>> task = new ServiceTask<>(requestId, expectedCallback, timeout);;
+        ServiceTask<IServiceCallback<?>> task = new ServiceTask<>(requestId, expectedCallback, timeout);
+
         serviceCallbackManagerToTest.addServiceTask(requestId, task);
 
         serviceCallbackManagerToTest.waitForServiceCallback(expectedCallback, requestId, 21);
@@ -264,4 +269,64 @@ public class AbstractServiceCallbackManagerTest
         fail("Expected ServiceTimeoutException");
     }
 
+
+    class AbstractServiceCallbackManagerToTest extends AbstractServiceCallbackManager
+    {
+        long timeout = -1;
+
+        AbstractServiceCallbackManagerToTest()
+        {
+            this(-1);
+        }
+
+        AbstractServiceCallbackManagerToTest(long timeout)
+        {
+            super();
+            this.timeout = timeout;
+        }
+
+        @Override
+        protected boolean waitForRequests(long timeoutParam)
+        {
+            if(timeout > 0)
+            {
+                return super.waitForRequests(timeout);
+            }
+            else
+            {
+                return super.waitForRequests(timeoutParam);
+            }
+        }
+    }
+
+    class FastAbstractServiceCallbackManagerToTest extends AbstractServiceCallbackManager
+    {
+        long timeout = -1;
+
+        FastAbstractServiceCallbackManagerToTest()
+        {
+            this(-1);
+        }
+
+        FastAbstractServiceCallbackManagerToTest(long timeout)
+        {
+            super();
+            this.timeout = timeout;
+            //make a fast ScheduledExecutorService to clear out tasks before timeout occurs
+            makeScheduledExecutorService(500, 500, TimeUnit.MILLISECONDS);
+        }
+
+        @Override
+        protected boolean waitForRequests(long timeoutParam)
+        {
+            if(timeout > 0)
+            {
+                return super.waitForRequests(timeout);
+            }
+            else
+            {
+                return super.waitForRequests(timeoutParam);
+            }
+        }
+    }
 }
