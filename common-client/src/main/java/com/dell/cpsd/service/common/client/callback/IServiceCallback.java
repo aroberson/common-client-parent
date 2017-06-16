@@ -27,7 +27,7 @@ public interface IServiceCallback<T extends ServiceResponse<?>>
      * 
      * @since   SINCE-TBD
      */
-    public void handleServiceError(ServiceError error);
+    void handleServiceError(ServiceError error);
     
     
     /**
@@ -38,7 +38,7 @@ public interface IServiceCallback<T extends ServiceResponse<?>>
      * 
      * @since   SINCE-TBD
      */
-    public void handleServiceTimeout(ServiceTimeout timeout);
+    void handleServiceTimeout(ServiceTimeout timeout);
     
     
     /**
@@ -48,5 +48,5 @@ public interface IServiceCallback<T extends ServiceResponse<?>>
      * 
      * @since   SINCE-TBD
      */
-    public void handleServiceResponse(T serviceResponse);
+    void handleServiceResponse(T serviceResponse);
 }

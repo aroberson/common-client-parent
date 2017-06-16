@@ -21,7 +21,7 @@ public class ServiceResponse<T>
     /*
      * The request identifier.
      */
-    public String requestId = null;
+    private String requestId = null;
     
     /*
      * The message associated with the service response.

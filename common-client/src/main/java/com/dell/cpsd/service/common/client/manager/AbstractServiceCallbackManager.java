@@ -5,34 +5,26 @@
 
 package com.dell.cpsd.service.common.client.manager;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Set;
-
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.ScheduledFuture;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ExecutorService;
-
 import com.dell.cpsd.common.logging.ILogger;
-
+import com.dell.cpsd.service.common.client.callback.IServiceCallback;
+import com.dell.cpsd.service.common.client.callback.ServiceCallback;
+import com.dell.cpsd.service.common.client.callback.ServiceTimeout;
+import com.dell.cpsd.service.common.client.exception.ServiceTimeoutException;
 import com.dell.cpsd.service.common.client.log.SCCLLoggingManager;
 import com.dell.cpsd.service.common.client.log.SCCLMessageCode;
-
-import com.dell.cpsd.service.common.client.exception.ServiceTimeoutException;
-
-import com.dell.cpsd.service.common.client.callback.ServiceCallback;
-import com.dell.cpsd.service.common.client.callback.ServiceError;
-import com.dell.cpsd.service.common.client.callback.ServiceTimeout;
-import com.dell.cpsd.service.common.client.callback.IServiceCallback;
-
 import com.dell.cpsd.service.common.client.task.ITimeoutTaskManager;
-import com.dell.cpsd.service.common.client.task.TimeoutTask;
 import com.dell.cpsd.service.common.client.task.ServiceTask;
+import com.dell.cpsd.service.common.client.task.TimeoutTask;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 /**
  * This class is responsible for handling service callbacks at the client.
@@ -344,13 +336,13 @@ public abstract class AbstractServiceCallbackManager implements ITimeoutTaskMana
     {
         TimeoutTask timeoutTask = new TimeoutTask(this);
         
-        final ScheduledExecutorService executorService = 
+        final ScheduledExecutorService newExecutorService =
                                 Executors.newSingleThreadScheduledExecutor();
         
-        executorService.scheduleWithFixedDelay(
+        newExecutorService.scheduleWithFixedDelay(
                     timeoutTask, initialDelay, delay, TimeUnit.MILLISECONDS);
         
-        return executorService;
+        return newExecutorService;
     }
     
     
@@ -424,7 +416,7 @@ public abstract class AbstractServiceCallbackManager implements ITimeoutTaskMana
                 executorService.awaitTermination(3, TimeUnit.SECONDS);
             
             // allow pending tasks to finish
-            if (graceful == false) 
+            if (!graceful)
             {
                 // cancel currently executing tasks
                 executorService.shutdownNow();
@@ -469,7 +461,7 @@ public abstract class AbstractServiceCallbackManager implements ITimeoutTaskMana
         long elapsedTime = 0;
        
         // the callback is done if a response or error is handled by the manager
-        while (serviceCallback.isDone() == false)
+        while (!serviceCallback.isDone())
         {
             try
             {
