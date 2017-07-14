@@ -5,12 +5,11 @@
 
 package com.dell.cpsd.service.common.client.log;
 
-import java.util.ResourceBundle;
-
-import com.dell.cpsd.common.logging.LoggingManager;
 import com.dell.cpsd.common.logging.ILogger;
-
+import com.dell.cpsd.common.logging.LoggingManager;
 import com.dell.cpsd.service.common.client.i18n.SCCLMessageBundle;
+
+import java.util.ResourceBundle;
 
 /**
  * This is the logging manager for the service common client library.

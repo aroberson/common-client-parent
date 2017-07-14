@@ -5,18 +5,11 @@
 
 package com.dell.cpsd.service.common.client.context;
 
-import java.util.UUID;
+import org.springframework.context.annotation.Bean;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
-
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.beans.factory.annotation.Autowired;
-
-import org.springframework.context.annotation.Profile;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Import;
-import org.springframework.context.annotation.Bean;
+import java.util.UUID;
 
 /**
  * This is the configuration for a client consumer context.
