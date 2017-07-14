@@ -1,9 +1,12 @@
 [![License](https://img.shields.io/badge/License-EPL%201.0-red.svg)](https://opensource.org/licenses/EPL-1.0)
 # common-client-parent
+
 ## Description
-The project is a library that provides common functionality for service client libraries.
+This repository contains a library that provides common functionality for service client libraries. For example, it provides service task handling functions such as service task reponses, timeouts, and errors.
+
 ## Documentation
-## API Overview
+You can find additional documentation for Project Symphony at [dellemc-symphony.readthedocs.io][documentation].
+
 ## Before you begin
 Verify that the following tools are installed:
  
@@ -14,7 +17,7 @@ Run the following command to build this project:
 ```bash
 mvn clean install
 ```
-## Deploying
+
 ## Contributing
 Project Symphony is a collection of services and libraries housed at [GitHub][github].
  
