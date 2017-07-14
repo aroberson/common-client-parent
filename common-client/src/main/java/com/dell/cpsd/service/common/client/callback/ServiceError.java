@@ -23,7 +23,7 @@ public class ServiceError
     /*
      * The request identifier.
      */
-    public String requestId = null;
+    private String requestId = null;
     
     /*
      * The error code.

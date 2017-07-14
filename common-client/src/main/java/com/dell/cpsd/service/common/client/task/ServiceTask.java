@@ -36,7 +36,7 @@ public class ServiceTask<T>
     /*
      * The request identifier.
      */
-    public String requestId = null;
+    private String requestId = null;
     
     
     /**

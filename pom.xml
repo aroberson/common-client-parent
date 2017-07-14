@@ -13,9 +13,9 @@
     </parent>
 
     <scm>
-        <connection>scm:git:${scm.git.repo.url}/VCE-Symphony/common-client-parent</connection>
-      <tag>HEAD</tag>
-  </scm>
+         <connection>scm:git:${scm.git.repo.url}/VCE-Symphony/common-client-parent</connection>
+         <tag>HEAD</tag>
+    </scm>
 
     <modules>
         <module>common-client</module>

@@ -21,7 +21,7 @@ public class ServiceTimeout
     /*
      * The request identifier.
      */
-    public String requestId = null;
+    private String requestId = null;
     
     /*
      * The timeout that was configured.

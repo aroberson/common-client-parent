@@ -25,5 +25,5 @@ public interface ITimeoutTaskManager
      * 
      * @since   SINCE-TBD
      */
-    public void checkForTimedoutTasks(); 
+    void checkForTimedoutTasks();
 }

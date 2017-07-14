@@ -5,12 +5,11 @@
 
 package com.dell.cpsd.service.common.client.log;
 
-import java.text.MessageFormat;
+import com.dell.cpsd.service.common.client.i18n.SCCLMessageBundle;
 
+import java.text.MessageFormat;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
-
-import com.dell.cpsd.service.common.client.i18n.SCCLMessageBundle;
 
 /**
  * This is the message code enum for the service common client library.
@@ -62,7 +61,7 @@ public enum SCCLMessageCode
      * 
      * @since   SINCE-TBD
      */
-    private SCCLMessageCode(int errorCode, String messageCode)
+    SCCLMessageCode(int errorCode, String messageCode)
     {
        this.errorCode = errorCode;
        this.messageCode = messageCode;

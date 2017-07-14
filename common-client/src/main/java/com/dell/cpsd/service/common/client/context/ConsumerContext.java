@@ -5,14 +5,9 @@
 
 package com.dell.cpsd.service.common.client.context;
 
-import java.util.UUID;
-
-import org.springframework.beans.factory.annotation.Autowired;
-
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Bean;
-
 import org.springframework.core.env.Environment;
+
+import java.util.UUID;
 
 /**
  * The consumer context for a client.
