@@ -9,13 +9,22 @@
     <parent>
         <groupId>com.dell.cpsd</groupId>
         <artifactId>root-parent</artifactId>
-        <version>0.2.5</version>
+        <version>1.0.0</version>
     </parent>
-
+	
     <scm>
-         <connection>scm:git:${scm.git.repo.url}/VCE-Symphony/common-client-parent</connection>
-         <tag>HEAD</tag>
+        <connection>scm:git:https://github.com/dellemc-symphony/common-client-parent.git</connection>
+        <developerConnection>scm:git:https://github.com/dellemc-symphony/common-client-parent.git</developerConnection>
+        <url>https://github.com/dellemc-symphony/common-client-parent</url>
     </scm>
+
+
+    <licenses>
+        <license>
+            <name>Eclipse Public License - v 1.0</name>
+            <url>http://www.eclipse.org/legal/epl-v10.html</url>
+        </license>
+    </licenses>
 
     <modules>
         <module>common-client</module>
