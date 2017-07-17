@@ -1,6 +1,6 @@
 /**
- * Copyright © 2016 Dell Inc. or its subsidiaries. All Rights Reserved.
- * VCE Confidential/Proprietary Information
+ * Copyright &copy; 2017 Dell Inc. or its subsidiaries. All Rights Reserved. 
+ * Dell EMC Confidential/Proprietary Information
  */
 
 package com.dell.cpsd.service.common.client.context;
@@ -12,35 +12,35 @@ import java.util.UUID;
 /**
  * The consumer context for a client.
  *
- * <p/>
- * Copyright © 2016 Dell Inc. or its subsidiaries. All Rights Reserved.
- * <p/>
+ * <p>
+ * Copyright &copy; 2017 Dell Inc. or its subsidiaries. All Rights Reserved. 
+ * Dell EMC Confidential/Proprietary Information
+ * </p>
  * 
  * @version 1.0
  * 
- * @since   SINCE-TBD
+ * @since 1.0
  */
-public class ConsumerContext 
+public class ConsumerContext
 {
     public static final String CONSUMER_UUID = "dell.cpsd.client.consumer.uuid";
-    
+
     /**
      * ConsumerContext constructor.
      * 
-     * @since   SINCE-TBD
+     * @since 1.0
      */
     public ConsumerContext()
     {
         super();
     }
-    
-    
+
     /**
      * This returns the consumer uuid.
      * 
-     * @return  The consumer uuid.
+     * @return The consumer uuid.
      * 
-     * @since   SINCE-TBD
+     * @since 1.0
      */
     public static String getConsumerUuid(final Environment environment)
     {
@@ -48,14 +48,14 @@ public class ConsumerContext
         {
             return null;
         }
-        
+
         String uuid = environment.getProperty(CONSUMER_UUID);
-        
+
         if (uuid == null)
         {
             uuid = UUID.randomUUID().toString();
         }
-        
+
         return uuid;
     }
 }

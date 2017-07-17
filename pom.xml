@@ -1,115 +1,115 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
-    <packaging>pom</packaging>
-    <groupId>com.dell.cpsd.common.client</groupId>
-    <artifactId>common-client-parent</artifactId>
-    <version>1.3-SNAPSHOT</version>
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<packaging>pom</packaging>
+	<groupId>com.dell.cpsd.common.client</groupId>
+	<artifactId>common-client-parent</artifactId>
+	<version>1.3-SNAPSHOT</version>
 
-    <parent>
-        <groupId>com.dell.cpsd</groupId>
-        <artifactId>root-parent</artifactId>
-        <version>1.0.0</version>
-    </parent>
+	<parent>
+		<groupId>com.dell.cpsd</groupId>
+		<artifactId>root-parent</artifactId>
+		<version>1.0.0</version>
+	</parent>
 
-    <name>Common Client Parent</name>
-    <description>Common Client Parent project for Dell CPSD</description>
-    <url>https://github.com/dellemc-symphony/common-client-parent</url>
+	<name>Common Client Parent</name>
+	<description>Common Client Parent project for Dell CPSD</description>
+	<url>https://github.com/dellemc-symphony/common-client-parent</url>
 
-    <scm>
-        <connection>scm:git:https://github.com/dellemc-symphony/common-client-parent.git</connection>
-        <developerConnection>scm:git:https://github.com/dellemc-symphony/common-client-parent.git</developerConnection>
-        <url>https://github.com/dellemc-symphony/common-client-parent</url>
-    </scm>
+	<scm>
+		<connection>scm:git:https://github.com/dellemc-symphony/common-client-parent.git</connection>
+		<developerConnection>scm:git:https://github.com/dellemc-symphony/common-client-parent.git</developerConnection>
+		<url>https://github.com/dellemc-symphony/common-client-parent</url>
+	</scm>
 
 
-    <licenses>
-        <license>
-            <name>Eclipse Public License - v 1.0</name>
-            <url>http://www.eclipse.org/legal/epl-v10.html</url>
-        </license>
-    </licenses>
+	<licenses>
+		<license>
+			<name>Eclipse Public License - v 1.0</name>
+			<url>http://www.eclipse.org/legal/epl-v10.html</url>
+		</license>
+	</licenses>
 
-    <developers>
-        <developer>
-            <name>Frank Rouse</name>
-            <email>frank.rouse@dell.com</email>
-            <organization>com.dell.cpsd</organization>
-            <organizationUrl>https://github.com/rousef42</organizationUrl>
-        </developer>
-        <developer>
-            <name>Desmond Collins</name>
-            <email>desmond.collins@dell.com</email>
-            <organization>com.dell.cpsd</organization>
-            <organizationUrl>https://github.com/giddyelysium</organizationUrl>
-        </developer>
-        <developer>
-            <name>Amit Kumar</name>
-            <email>amit.kumar9@dell.com</email>
-            <organization>com.dell.cpsd</organization>
-            <organizationUrl>https://github.com/kumara189</organizationUrl>
-        </developer>
-        <developer>
-            <name>Jeff Cheng</name>
-            <email>jeffery.cheng@dell.com</email>
-            <organization>com.dell.cpsd</organization>
-            <organizationUrl>https://github.com/jccheng78</organizationUrl>
-        </developer>
-        <developer>
-            <name>Bheemesh Sannapareddi</name>
-            <email>b.sannapareddi@dell.com</email>
-            <organization>com.dell.cpsd</organization>
-            <organizationUrl>https://github.com/sannab2</organizationUrl>
-        </developer>
-        <developer>
-            <name>Mark O'Callaghan</name>
-            <email>mark.ocallaghan2@dell.com</email>
-            <organization>com.dell.cpsd</organization>
-            <organizationUrl>https://github.com/ocallm1</organizationUrl>
-        </developer>
-        <developer>
-            <name>Phani Kalagara</name>
-            <email>phani.kalagara@dell.com</email>
-            <organization>com.dell.cpsd</organization>
-            <organizationUrl>https://github.com/kalagp</organizationUrl>
-        </developer>
-        <developer>
-            <name>Purna Chamala</name>
-            <email>purna.chamala@dell.com</email>
-            <organization>com.dell.cpsd</organization>
-            <organizationUrl>https://github.com/chamap1</organizationUrl>
-        </developer>
-        <developer>
-            <name>Ramya Gopalan</name>
-            <email>ramya.gopalan@dell.com</email>
-            <organization>com.dell.cpsd</organization>
-            <organizationUrl>https://github.com/ramyagopalan-dell</organizationUrl>
-        </developer>
-    </developers>
+	<developers>
+		<developer>
+			<name>Frank Rouse</name>
+			<email>frank.rouse@dell.com</email>
+			<organization>com.dell.cpsd</organization>
+			<organizationUrl>https://github.com/rousef42</organizationUrl>
+		</developer>
+		<developer>
+			<name>Desmond Collins</name>
+			<email>desmond.collins@dell.com</email>
+			<organization>com.dell.cpsd</organization>
+			<organizationUrl>https://github.com/giddyelysium</organizationUrl>
+		</developer>
+		<developer>
+			<name>Amit Kumar</name>
+			<email>amit.kumar9@dell.com</email>
+			<organization>com.dell.cpsd</organization>
+			<organizationUrl>https://github.com/kumara189</organizationUrl>
+		</developer>
+		<developer>
+			<name>Jeff Cheng</name>
+			<email>jeffery.cheng@dell.com</email>
+			<organization>com.dell.cpsd</organization>
+			<organizationUrl>https://github.com/jccheng78</organizationUrl>
+		</developer>
+		<developer>
+			<name>Bheemesh Sannapareddi</name>
+			<email>b.sannapareddi@dell.com</email>
+			<organization>com.dell.cpsd</organization>
+			<organizationUrl>https://github.com/sannab2</organizationUrl>
+		</developer>
+		<developer>
+			<name>Mark O'Callaghan</name>
+			<email>mark.ocallaghan2@dell.com</email>
+			<organization>com.dell.cpsd</organization>
+			<organizationUrl>https://github.com/ocallm1</organizationUrl>
+		</developer>
+		<developer>
+			<name>Phani Kalagara</name>
+			<email>phani.kalagara@dell.com</email>
+			<organization>com.dell.cpsd</organization>
+			<organizationUrl>https://github.com/kalagp</organizationUrl>
+		</developer>
+		<developer>
+			<name>Purna Chamala</name>
+			<email>purna.chamala@dell.com</email>
+			<organization>com.dell.cpsd</organization>
+			<organizationUrl>https://github.com/chamap1</organizationUrl>
+		</developer>
+		<developer>
+			<name>Ramya Gopalan</name>
+			<email>ramya.gopalan@dell.com</email>
+			<organization>com.dell.cpsd</organization>
+			<organizationUrl>https://github.com/ramyagopalan-dell</organizationUrl>
+		</developer>
+	</developers>
 
-    <modules>
-        <module>common-client</module>
-    </modules>
+	<modules>
+		<module>common-client</module>
+	</modules>
 
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>com.dell.cpsd.common.client</groupId>
-                <artifactId>common-client</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>com.dell.cpsd.common.client</groupId>
+				<artifactId>common-client</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.2</version>
-            </plugin>
-        </plugins>
-    </build>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.2</version>
+			</plugin>
+		</plugins>
+	</build>
 
 </project>

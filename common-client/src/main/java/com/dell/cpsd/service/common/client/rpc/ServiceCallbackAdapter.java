@@ -1,6 +1,6 @@
 /**
- * &copy; 2016 VCE Company, LLC. All rights reserved.
- * VCE Confidential/Proprietary Information
+ * Copyright &copy; 2017 Dell Inc. or its subsidiaries. All Rights Reserved. 
+ * Dell EMC Confidential/Proprietary Information
  */
 
 package com.dell.cpsd.service.common.client.rpc;
@@ -9,11 +9,11 @@ import com.dell.cpsd.service.common.client.callback.IServiceCallback;
 
 /**
  * <p>
- * &copy; 2016 VCE Company, LLC. All rights reserved.
- * VCE Confidential/Proprietary Information
+ * Copyright &copy; 2017 Dell Inc. or its subsidiaries. All Rights Reserved. 
+ * Dell EMC Confidential/Proprietary Information
  * </p>
  *
- * @since SINCE-TBD
+ * @since 1.0
  */
 public interface ServiceCallbackAdapter<S, D>
 {

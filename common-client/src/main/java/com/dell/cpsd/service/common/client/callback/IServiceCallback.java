@@ -1,52 +1,51 @@
 /**
- * Copyright © 2016 Dell Inc. or its subsidiaries. All Rights Reserved.
- * VCE Confidential/Proprietary Information
+ * Copyright &copy; 2017 Dell Inc. or its subsidiaries. All Rights Reserved. 
+ * Dell EMC Confidential/Proprietary Information
  */
 
 package com.dell.cpsd.service.common.client.callback;
 
 /**
- * This interface should be implemented by any class that acts as a callback
- * for a service request.
+ * This interface should be implemented by any class that acts as a callback for a service request.
  *
- * <p/>
- * Copyright © 2016 Dell Inc. or its subsidiaries. All Rights Reserved.
- * <p/>
+ * <p>
+ * Copyright &copy; 2017 Dell Inc. or its subsidiaries. All Rights Reserved. 
+ * Dell EMC Confidential/Proprietary Information
+ * </p>
  * 
  * @version 1.0
  * 
- * @since   SINCE-TBD
+ * @since 1.0
  */
 public interface IServiceCallback<T extends ServiceResponse<?>>
 {
     /**
-     * This handles a service error. The result is contained in the
-     * <code>ServiceError</code>.
+     * This handles a service error. The result is contained in the <code>ServiceError</code>.
      * 
-     * @param   result  The <code>ServiceError</code> with the error data.
+     * @param result
+     *            The <code>ServiceError</code> with the error data.
      * 
-     * @since   SINCE-TBD
+     * @since 1.0
      */
     void handleServiceError(ServiceError error);
-    
-    
+
     /**
-     * This handles a service timeout. The result is contained in the
-     * <code>ServiceTimeout</code>.
+     * This handles a service timeout. The result is contained in the <code>ServiceTimeout</code>.
      * 
-     * @param   timeout  The <code>ServiceTimeout</code> with the timeout.
+     * @param timeout
+     *            The <code>ServiceTimeout</code> with the timeout.
      * 
-     * @since   SINCE-TBD
+     * @since 1.0
      */
     void handleServiceTimeout(ServiceTimeout timeout);
-    
-    
+
     /**
      * This handles the service response.
      * 
-     * @param   serviceResponse The service response.
+     * @param serviceResponse
+     *            The service response.
      * 
-     * @since   SINCE-TBD
+     * @since 1.0
      */
     void handleServiceResponse(T serviceResponse);
 }

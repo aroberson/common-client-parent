@@ -1,3 +1,8 @@
+/**
+ * Copyright &copy; 2017 Dell Inc. or its subsidiaries. All Rights Reserved. 
+ * Dell EMC Confidential/Proprietary Information
+ */
+
 package com.dell.cpsd.service.common.client.callback;
 
 import org.junit.Test;
@@ -9,8 +14,7 @@ import static org.junit.Assert.assertTrue;
  * Unit tests for ServiceCallback
  * <p>
  * <p>
- * Copyright &copy; 2017 Dell Inc. or its subsidiaries.  All Rights Reserved.
- * Dell EMC Confidential/Proprietary Information
+ * Copyright &copy; 2017 Dell Inc. or its subsidiaries. All Rights Reserved. Dell EMC Confidential/Proprietary Information
  * </p>
  */
 public class ServiceCallbackTest
