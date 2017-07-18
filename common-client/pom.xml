@@ -33,7 +33,7 @@
 		<dependency>
 			<groupId>com.dell.cpsd.common.messaging</groupId>
 			<artifactId>common-rabbitmq</artifactId>
-			<version>1.5-SNAPSHOT</version>
+			<version>1.5.0</version>
 		</dependency>
 
 		<!-- slf4j -->
