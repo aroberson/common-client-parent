@@ -1,6 +1,6 @@
 /**
- * Copyright &copy; 2017 Dell Inc. or its subsidiaries. All Rights Reserved.
- * VCE Confidential/Proprietary Information
+ * Copyright &copy; 2017 Dell Inc. or its subsidiaries. All Rights Reserved. 
+ * Dell EMC Confidential/Proprietary Information
  */
 
 package com.dell.cpsd.service.common.client.context;
@@ -14,11 +14,12 @@ import java.util.UUID;
 /**
  * This is the configuration for a client consumer context.
  *
- * <p/>
- * Copyright &copy; 2017 Dell Inc. or its subsidiaries. All Rights Reserved.
- * <p/>
+ * <p>
+ * Copyright &copy; 2017 Dell Inc. or its subsidiaries. All Rights Reserved. 
+ * Dell EMC Confidential/Proprietary Information
+ * </p>
  * 
- * @since   1.0
+ * @since 1.0
  */
 public class ConsumerContextConfig implements IConsumerContextConfig
 {
@@ -26,35 +27,35 @@ public class ConsumerContextConfig implements IConsumerContextConfig
      * The container identifier
      */
     private static final String CONTAINER_ID = "container.id";
-    
+
     /*
      * The name of the consumer.
      */
-    private String consumerName;
-    
+    private String              consumerName;
+
     /*
      * The consumer stateful flag.
      */
-    private boolean stateful;
-    
-    
+    private boolean             stateful;
+
     /**
      * ConsumerContextConfig constructor
      * 
-     * @param   consumerName    The name of the consumer.
-     * @param   stateful        The consumer stateful flag.
+     * @param consumerName
+     *            The name of the consumer.
+     * @param stateful
+     *            The consumer stateful flag.
      * 
-     * @since   1.0
+     * @since 1.0
      */
     public ConsumerContextConfig(final String consumerName, final boolean stateful)
     {
         super();
-        
+
         this.consumerName = consumerName;
         this.stateful = stateful;
     }
-    
-    
+
     /**
      * {@inheritDoc}
      */
@@ -64,8 +65,7 @@ public class ConsumerContextConfig implements IConsumerContextConfig
     {
         return this.consumerName;
     }
-    
-    
+
     /**
      * {@inheritDoc}
      */
@@ -78,15 +78,14 @@ public class ConsumerContextConfig implements IConsumerContextConfig
         builder.append(this.consumerName());
         builder.append(".");
         builder.append(this.getContainerId());
-        
+
         final String uuid = UUID.randomUUID().toString();
         builder.append(".");
         builder.append(uuid);
-        
+
         return builder.toString();
     }
-    
-    
+
     /**
      * {@inheritDoc}
      */
@@ -96,19 +95,18 @@ public class ConsumerContextConfig implements IConsumerContextConfig
     {
         return this.stateful;
     }
-    
-    
+
     /**
      * This returns the container id or the name of the host.
      * 
-     * @return  The name of the host.
+     * @return The name of the host.
      * 
-     * @since   1.0
+     * @since 1.0
      */
     protected String getContainerId()
     {
         String containerId = System.getProperty(CONTAINER_ID);
-        
+
         if (containerId == null)
         {
             try
@@ -120,7 +118,7 @@ public class ConsumerContextConfig implements IConsumerContextConfig
                 throw new RuntimeException("Unable to identify hostname", e);
             }
         }
-        
+
         return containerId;
     }
 }

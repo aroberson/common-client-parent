@@ -1,6 +1,6 @@
 /**
- * Copyright © 2016 Dell Inc. or its subsidiaries. All Rights Reserved.
- * VCE Confidential/Proprietary Information
+ * Copyright &copy; 2017 Dell Inc. or its subsidiaries. All Rights Reserved. 
+ * Dell EMC Confidential/Proprietary Information
  */
 
 package com.dell.cpsd.service.common.client.exception;
@@ -8,13 +8,14 @@ package com.dell.cpsd.service.common.client.exception;
 /**
  * This is the timeout exception for a service request.
  *
- * <p/>
- * Copyright © 2016 Dell Inc. or its subsidiaries. All Rights Reserved.
- * <p/>
+ * <p>
+ * Copyright &copy; 2017 Dell Inc. or its subsidiaries. All Rights Reserved. 
+ * Dell EMC Confidential/Proprietary Information
+ * </p>
  * 
  * @version 1.0
  * 
- * @since   SINCE-TBD
+ * @since 1.0
  */
 public final class ServiceTimeoutException extends Exception
 {
@@ -23,51 +24,51 @@ public final class ServiceTimeoutException extends Exception
      */
     private static final long serialVersionUID = 4119241334520852220L;
 
-    
     /**
      * ServiceTimeoutException constructor.
      * 
-     * @since   SINCE-TBD
+     * @since 1.0
      */
     public ServiceTimeoutException()
     {
         super();
     }
-    
-    
+
     /**
      * ServiceTimeoutException constructor.
      * 
-     * @param   cause  The cause of the exception.
+     * @param cause
+     *            The cause of the exception.
      * 
-     * @since   SINCE-TBD
+     * @since 1.0
      */
     public ServiceTimeoutException(Throwable cause)
     {
         super(cause);
     }
-    
-    
+
     /**
      * ServiceTimeoutException constructor.
      * 
-     * @param   message  The exception message.
+     * @param message
+     *            The exception message.
      * 
-     * @since   SINCE-TBD
+     * @since 1.0
      */
     public ServiceTimeoutException(String message)
     {
         super(message);
     }
-    
-    
+
     /**
      * ServiceTimeoutException constructor.
      * 
-     * @param   message  The exception message.
-     * @param   cause    The cause of the exception.
+     * @param message
+     *            The exception message.
+     * @param cause
+     *            The cause of the exception.
      * 
-     * @since   SINCE-TBD
+     * @since 1.0
      */
     public ServiceTimeoutException(String message, Throwable cause)
     {

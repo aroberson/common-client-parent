@@ -1,3 +1,8 @@
+/**
+ * Copyright &copy; 2017 Dell Inc. or its subsidiaries. All Rights Reserved. 
+ * Dell EMC Confidential/Proprietary Information
+ */
+
 package com.dell.cpsd.service.common.client.rpc;
 
 import com.dell.cpsd.common.logging.ILogger;
@@ -17,14 +22,14 @@ import static org.junit.Assert.*;
  * Unit tests for AbstractServiceClient.
  * <p>
  * <p>
- * Copyright &copy; 2017 Dell Inc. or its subsidiaries.  All Rights Reserved.
- * Dell EMC Confidential/Proprietary Information
+ * Copyright &copy; 2017 Dell Inc. or its subsidiaries. All Rights Reserved. Dell EMC Confidential/Proprietary Information
  * </p>
  */
 public class AbstractServiceClientTest
 {
 
     private AbstractServiceClientToTest serviceClientToTest;
+
     @Before
     public void setUp() throws Exception
     {
@@ -86,11 +91,11 @@ public class AbstractServiceClientTest
 
     class MockServiceRequestCallback implements ServiceRequestCallback
     {
-        String requestId;
+        String                requestId;
         AbstractServiceClient serviceClient;
-        ServiceResponse<?> response;
-        ServiceError error;
-        boolean requestExecuted = false;
+        ServiceResponse<?>    response;
+        ServiceError          error;
+        boolean               requestExecuted = false;
 
         MockServiceRequestCallback(String requestId, AbstractServiceClient serviceClient, ServiceResponse<?> response)
         {

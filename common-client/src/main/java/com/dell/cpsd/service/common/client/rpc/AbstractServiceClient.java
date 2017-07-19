@@ -1,6 +1,6 @@
 /**
- * &copy; 2016 VCE Company, LLC. All rights reserved.
- * VCE Confidential/Proprietary Information
+ * Copyright &copy; 2017 Dell Inc. or its subsidiaries. All Rights Reserved. 
+ * Dell EMC Confidential/Proprietary Information
  */
 
 package com.dell.cpsd.service.common.client.rpc;
@@ -22,11 +22,11 @@ import java.util.UUID;
 
 /**
  * <p>
- * &copy; 2016 VCE Company, LLC. All rights reserved.
- * VCE Confidential/Proprietary Information
+ * Copyright &copy; 2017 Dell Inc. or its subsidiaries. All Rights Reserved. 
+ * Dell EMC Confidential/Proprietary Information
  * </p>
  *
- * @since SINCE-TBD
+ * @since 1.0
  */
 public abstract class AbstractServiceClient extends AbstractServiceCallbackManager implements ServiceCallbackRegistry
 {
@@ -40,8 +40,7 @@ public abstract class AbstractServiceClient extends AbstractServiceCallbackManag
         this.logger = logger;
     }
 
-    protected <REQ, RES extends ServiceResponse<?>> RES processRequest(long timeout,
-            final ServiceRequestCallback serviceRequestCallback)
+    protected <REQ, RES extends ServiceResponse<?>> RES processRequest(long timeout, final ServiceRequestCallback serviceRequestCallback)
             throws ServiceTimeoutException, ServiceExecutionException
     {
         this.shutdownCheck();
@@ -82,7 +81,7 @@ public abstract class AbstractServiceClient extends AbstractServiceCallbackManag
     /**
      * This releases any resources associated with this manager.
      *
-     * @since   1.0
+     * @since 1.0
      */
     @Override
     public void release()
@@ -90,28 +89,23 @@ public abstract class AbstractServiceClient extends AbstractServiceCallbackManag
         super.release();
     }
 
-    private void createAndAddServiceTask(final String requestId,
-            final ServiceCallback<?> callback, final long timeout)
+    private void createAndAddServiceTask(final String requestId, final ServiceCallback<?> callback, final long timeout)
     {
         // the infinite timeout is used for the task because it is handled with
         // this synchronous call.
-        ServiceTask<IServiceCallback<?>> task =
-                new ServiceTask<>(requestId, callback, timeout);
+        ServiceTask<IServiceCallback<?>> task = new ServiceTask<>(requestId, callback, timeout);
 
         // add the compute callback using the correlation identifier as key
         this.addServiceTask(requestId, task);
     }
 
-
-    private void logAndThrowException(final Exception exception)
-            throws ServiceExecutionException
+    private void logAndThrowException(final Exception exception) throws ServiceExecutionException
     {
         Object[] lparams = {exception.getMessage()};
         String lmessage = logger.error(SCCLMessageCode.PUBLISH_MESSAGE_FAIL_E.getMessageCode(), lparams, exception);
 
         throw new ServiceExecutionException(lmessage, exception);
     }
-
 
     protected String createRequestId()
     {
@@ -133,9 +127,7 @@ public abstract class AbstractServiceClient extends AbstractServiceCallbackManag
         return new ServiceCallback<R>();
     }
 
-
-    private void checkForServiceError(final ServiceCallback<?> callback)
-            throws ServiceExecutionException
+    private void checkForServiceError(final ServiceCallback<?> callback) throws ServiceExecutionException
     {
         // check to see if a compute error has been handled by the manager
         ServiceError error = callback.getServiceError();
@@ -146,7 +138,6 @@ public abstract class AbstractServiceClient extends AbstractServiceCallbackManag
             throw new ServiceExecutionException(error.getErrorMessage());
         }
     }
-
 
     private void shutdownCheck() throws ServiceExecutionException
     {

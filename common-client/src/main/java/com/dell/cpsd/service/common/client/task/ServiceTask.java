@@ -1,6 +1,6 @@
 /**
- * Copyright © 2016 Dell Inc. or its subsidiaries. All Rights Reserved.
- * VCE Confidential/Proprietary Information
+ * Copyright &copy; 2017 Dell Inc. or its subsidiaries. All Rights Reserved. 
+ * Dell EMC Confidential/Proprietary Information
  */
 
 package com.dell.cpsd.service.common.client.task;
@@ -8,141 +8,138 @@ package com.dell.cpsd.service.common.client.task;
 /**
  * This is a service task that is created and managed by the service manager.
  *
- * <p/>
- * Copyright © 2016 Dell Inc. or its subsidiaries. All Rights Reserved.
- * <p/>
+ * <p>
+ * Copyright &copy; 2017 Dell Inc. or its subsidiaries. All Rights Reserved. 
+ * Dell EMC Confidential/Proprietary Information
+ * </p>
  * 
  * @version 1.0
  * 
- * @since   SINCE-TDB
+ * @since 1.0
  */
 public class ServiceTask<T>
 {
     /*
      * The callback for the task
      */
-    private T callback = null;
-   
+    private T      callback  = null;
+
     /*
      * The timestamp for this task.
      */
-    private long timestamp = -1;
-    
+    private long   timestamp = -1;
+
     /*
      * The timeout for this task.
      */
-    private long timeout = -1;
-    
+    private long   timeout   = -1;
+
     /*
      * The request identifier.
      */
     private String requestId = null;
-    
-    
+
     /**
      * ServiceTask constructor
      * 
-     * @param   callback  The callback for this task.
-     * @param   timeout   The timeout for this task.
+     * @param callback
+     *            The callback for this task.
+     * @param timeout
+     *            The timeout for this task.
      * 
-     * @since   SINCE-TDB
+     * @since 1.0
      */
     public ServiceTask(String requestId, T callback, long timeout)
     {
         super();
-        
+
         if (requestId == null)
         {
             throw new IllegalArgumentException("The request identifier is not set.");
         }
-        
+
         this.requestId = requestId;
-        
+
         this.callback = callback;
-        
+
         this.timeout = timeout;
-        
+
         this.timestamp = System.currentTimeMillis();
     }
-    
-    
+
     /**
      * This returns the request identifier.
      * 
-     * @return  The request identifier.
+     * @return The request identifier.
      * 
-     * @since   SINCE-TDB
+     * @since 1.0
      */
     public String getRequestId()
     {
         return this.requestId;
     }
-    
 
     /**
      * This returns the timestamp for this task.
      * 
-     * @return  The timestamp for this task.
+     * @return The timestamp for this task.
      * 
-     * @since   SINCE-TDB
+     * @since 1.0
      */
     public long getTimestamp()
     {
         return this.timestamp;
     }
-    
-    
+
     /**
      * This returns the timeout for this task.
      * 
-     * @return  The timeout for this task.
+     * @return The timeout for this task.
      * 
-     * @since   SINCE-TDB
+     * @since 1.0
      */
     public long getTimeout()
     {
         return this.timeout;
     }
 
-    
     /**
      * This returns the service callback for this task.
      * 
-     * @return  The service callback for this task.
+     * @return The service callback for this task.
      * 
-     * @since   SINCE-TDB
+     * @since 1.0
      */
     public T getServiceCallback()
     {
         return this.callback;
     }
-    
-    
+
     /**
      * This returns true if this task has timed out.
      * 
-     * @param   currentTime  The current time.
+     * @param currentTime
+     *            The current time.
      * 
-     * @return  True if the task has timed out, else false.
+     * @return True if the task has timed out, else false.
      * 
-     * @since   SINCE-TDB
+     * @since 1.0
      */
     public boolean hasTimedout(long currentTime)
     {
         // if the timeout value not greater than zero then it is infinite.
-        // an infinite value is set by synchronous calls since they are 
-        // managed separately. 
+        // an infinite value is set by synchronous calls since they are
+        // managed separately.
         if (this.timeout <= 0)
         {
             return false;
         }
-        
+
         long elapsedTime = currentTime - this.timestamp;
-        
+
         return (elapsedTime >= this.timeout);
     }
-    
-    
+
     /**
      * {@inheritDoc}
      */
@@ -153,7 +150,7 @@ public class ServiceTask<T>
         {
             return true;
         }
-        
+
         if ((o == null) || (getClass() != o.getClass()))
         {
             return false;
@@ -164,7 +161,6 @@ public class ServiceTask<T>
         return this.requestId.equals(that.requestId);
     }
 
-    
     /**
      * {@inheritDoc}
      */
@@ -175,12 +171,11 @@ public class ServiceTask<T>
 
         return result;
     }
-    
 
     /**
      * {@inheritDoc}
      */
-    @Override 
+    @Override
     public String toString()
     {
         StringBuilder builder = new StringBuilder("ServiceTask{");

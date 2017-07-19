@@ -1,3 +1,8 @@
+/**
+ * Copyright &copy; 2017 Dell Inc. or its subsidiaries. All Rights Reserved. 
+ * Dell EMC Confidential/Proprietary Information
+ */
+
 package com.dell.cpsd.service.common.client.log;
 
 import com.dell.cpsd.service.common.client.i18n.SCCLMessageBundle;
@@ -12,17 +17,17 @@ import static org.junit.Assert.*;
  * TODO: Document usage.
  * <p>
  * <p>
- * Copyright &copy; 2017 Dell Inc. or its subsidiaries.  All Rights Reserved.
- * Dell EMC Confidential/Proprietary Information
+ * Copyright &copy; 2017 Dell Inc. or its subsidiaries. All Rights Reserved. Dell EMC Confidential/Proprietary Information
  * </p>
  */
 public class SCCLMessageCodeTest
 {
     SCCLMessageBundle bundle;
+
     @Before
     public void setUp() throws Exception
     {
-        //SCCLMessageCode.valueOf("2001");
+        // SCCLMessageCode.valueOf("2001");
         SCCLMessageCode[] values = SCCLMessageCode.values();
         bundle = new SCCLMessageBundle();
     }
@@ -40,7 +45,7 @@ public class SCCLMessageCodeTest
     public void getErrorCode() throws Exception
     {
         int expected = 2001;
-        int code =  SCCLMessageCode.TIMEOUT_TASK_CHECK_E.getErrorCode();
+        int code = SCCLMessageCode.TIMEOUT_TASK_CHECK_E.getErrorCode();
 
         assertEquals(expected, code);
     }
@@ -67,8 +72,8 @@ public class SCCLMessageCodeTest
     public void getMessageTextWithParam() throws Exception
     {
         String expectedText = bundle.getString(SCCLMessageCode.TIMEOUT_TASK_CHECK_E.getMessageCode());
-        expectedText = MessageFormat.format(expectedText, new String[]{"param1"});
-        String errorText = SCCLMessageCode.TIMEOUT_TASK_CHECK_E.getMessageText(new String[]{"param1"});
+        expectedText = MessageFormat.format(expectedText, new String[] {"param1"});
+        String errorText = SCCLMessageCode.TIMEOUT_TASK_CHECK_E.getMessageText(new String[] {"param1"});
 
         assertEquals(expectedText, errorText);
     }

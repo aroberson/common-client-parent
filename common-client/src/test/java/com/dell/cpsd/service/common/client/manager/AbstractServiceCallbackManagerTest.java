@@ -1,3 +1,8 @@
+/**
+ * Copyright &copy; 2017 Dell Inc. or its subsidiaries. All Rights Reserved. 
+ * Dell EMC Confidential/Proprietary Information
+ */
+
 package com.dell.cpsd.service.common.client.manager;
 
 import com.dell.cpsd.service.common.client.callback.IServiceCallback;
@@ -24,13 +29,12 @@ import static org.junit.Assert.fail;
  * Unit tests for AbstractServiceCallbackManager.
  * <p>
  * <p>
- * Copyright &copy; 2017 Dell Inc. or its subsidiaries.  All Rights Reserved.
- * Dell EMC Confidential/Proprietary Information
+ * Copyright &copy; 2017 Dell Inc. or its subsidiaries. All Rights Reserved. Dell EMC Confidential/Proprietary Information
  * </p>
  */
 public class AbstractServiceCallbackManagerTest
 {
-    private boolean isHandleServiceTimeoutCalled;
+    private boolean                        isHandleServiceTimeoutCalled;
 
     private AbstractServiceCallbackManager serviceCallbackManagerToTest;
 
@@ -39,6 +43,7 @@ public class AbstractServiceCallbackManagerTest
     {
         serviceCallbackManagerToTest = new AbstractServiceCallbackManagerToTest();
     }
+
     @After
     public void tearDown()
     {
@@ -150,7 +155,8 @@ public class AbstractServiceCallbackManagerTest
         isHandleServiceTimeoutCalled = false;
         String requestId = "request-1";
         long timeout = 1;
-        ServiceCallback<ServiceResponse<?>> expectedCallback = new ServiceCallback<ServiceResponse<?>>(){
+        ServiceCallback<ServiceResponse<?>> expectedCallback = new ServiceCallback<ServiceResponse<?>>()
+        {
 
             @Override
             public void handleServiceTimeout(final ServiceTimeout timeout)
@@ -170,7 +176,7 @@ public class AbstractServiceCallbackManagerTest
     @Test
     public void makeScheduledExecutorService() throws Exception
     {
-        ScheduledExecutorService executorService = serviceCallbackManagerToTest.makeScheduledExecutorService(10,20, TimeUnit.MICROSECONDS);
+        ScheduledExecutorService executorService = serviceCallbackManagerToTest.makeScheduledExecutorService(10, 20, TimeUnit.MICROSECONDS);
         assertNotNull(executorService);
     }
 
@@ -211,7 +217,7 @@ public class AbstractServiceCallbackManagerTest
     @Test
     public void shutdown() throws Exception
     {
-        ScheduledExecutorService executorService = serviceCallbackManagerToTest.makeScheduledExecutorService(10,20, TimeUnit.MICROSECONDS);
+        ScheduledExecutorService executorService = serviceCallbackManagerToTest.makeScheduledExecutorService(10, 20, TimeUnit.MICROSECONDS);
         assertFalse(executorService.isShutdown());
 
         serviceCallbackManagerToTest.shutdown(executorService);
@@ -224,8 +230,10 @@ public class AbstractServiceCallbackManagerTest
     {
         String requestId = "request-1";
         long timeout = 10000;
-        ServiceCallback<ServiceResponse<?>> expectedCallback = new ServiceCallback<ServiceResponse<?>>(){
+        ServiceCallback<ServiceResponse<?>> expectedCallback = new ServiceCallback<ServiceResponse<?>>()
+        {
             int isDoneCnt = 0;
+
             @Override
             public boolean isDone()
             {
@@ -246,8 +254,10 @@ public class AbstractServiceCallbackManagerTest
     {
         String requestId = "request-1";
         long timeout = 10000;
-        ServiceCallback<ServiceResponse<?>> expectedCallback = new ServiceCallback<ServiceResponse<?>>(){
+        ServiceCallback<ServiceResponse<?>> expectedCallback = new ServiceCallback<ServiceResponse<?>>()
+        {
             int isDoneCnt = 0;
+
             @Override
             public boolean isDone()
             {
@@ -269,7 +279,6 @@ public class AbstractServiceCallbackManagerTest
         fail("Expected ServiceTimeoutException");
     }
 
-
     class AbstractServiceCallbackManagerToTest extends AbstractServiceCallbackManager
     {
         long timeout = -1;
@@ -288,7 +297,7 @@ public class AbstractServiceCallbackManagerTest
         @Override
         protected boolean waitForRequests(long timeoutParam)
         {
-            if(timeout > 0)
+            if (timeout > 0)
             {
                 return super.waitForRequests(timeout);
             }
@@ -312,14 +321,14 @@ public class AbstractServiceCallbackManagerTest
         {
             super();
             this.timeout = timeout;
-            //make a fast ScheduledExecutorService to clear out tasks before timeout occurs
+            // make a fast ScheduledExecutorService to clear out tasks before timeout occurs
             makeScheduledExecutorService(500, 500, TimeUnit.MILLISECONDS);
         }
 
         @Override
         protected boolean waitForRequests(long timeoutParam)
         {
-            if(timeout > 0)
+            if (timeout > 0)
             {
                 return super.waitForRequests(timeout);
             }

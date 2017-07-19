@@ -1,6 +1,6 @@
 /**
- * &copy; 2016 VCE Company, LLC. All rights reserved.
- * VCE Confidential/Proprietary Information
+ * Copyright &copy; 2017 Dell Inc. or its subsidiaries. All Rights Reserved. 
+ * Dell EMC Confidential/Proprietary Information
  */
 
 package com.dell.cpsd.service.common.client.rpc;
@@ -15,11 +15,11 @@ import java.util.Map;
 
 /**
  * <p>
- * &copy; 2016 VCE Company, LLC. All rights reserved.
- * VCE Confidential/Proprietary Information
+ * Copyright &copy; 2017 Dell Inc. or its subsidiaries. All Rights Reserved. 
+ * Dell EMC Confidential/Proprietary Information
  * </p>
  *
- * @since SINCE-TBD
+ * @since 1.0
  */
 public abstract class AbstractMessageConsumer extends UnhandledMessageConsumer implements DelegatingMessageConsumer
 {
@@ -43,8 +43,7 @@ public abstract class AbstractMessageConsumer extends UnhandledMessageConsumer i
         }
     }
 
-    protected <M, R> void handleResponse(final M message,
-            final ServiceCallbackAdapter<M, R> handler)
+    protected <M, R> void handleResponse(final M message, final ServiceCallbackAdapter<M, R> handler)
     {
         if (message == null)
         {
@@ -68,8 +67,7 @@ public abstract class AbstractMessageConsumer extends UnhandledMessageConsumer i
         {
             // log the exception thrown by the compute callback
             Object[] lparams = {"handleResponseCallback", exception.getMessage()};
-            getLogger().error(SCCLMessageCode.ERROR_CALLBACK_FAIL_E.getMessageCode(),
-                    lparams, exception);
+            getLogger().error(SCCLMessageCode.ERROR_CALLBACK_FAIL_E.getMessageCode(), lparams, exception);
         }
     }
 
