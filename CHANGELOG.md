@@ -6,4 +6,4 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
  
 ## [Unreleased]
 ### Added
- - Creation of the initial Changelog file
+ - Release of the initial common-client-parent binary files.

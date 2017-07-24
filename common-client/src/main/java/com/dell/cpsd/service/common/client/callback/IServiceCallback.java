@@ -19,13 +19,12 @@ package com.dell.cpsd.service.common.client.callback;
  */
 public interface IServiceCallback<T extends ServiceResponse<?>>
 {
+
     /**
      * This handles a service error. The result is contained in the <code>ServiceError</code>.
      * 
-     * @param result
-     *            The <code>ServiceError</code> with the error data.
-     * 
-     * @since 1.0
+     * @param error
+     *            Service error to be handled
      */
     void handleServiceError(ServiceError error);
 

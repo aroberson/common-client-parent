@@ -38,16 +38,16 @@ public class ServiceTask<T>
      * The request identifier.
      */
     private String requestId = null;
-
+   
     /**
-     * ServiceTask constructor
+     * ServiceTask construtor
      * 
+     * @param requestId
+     *            for the service task
      * @param callback
-     *            The callback for this task.
+     *            for this task
      * @param timeout
-     *            The timeout for this task.
-     * 
-     * @since 1.0
+     *            for this task
      */
     public ServiceTask(String requestId, T callback, long timeout)
     {

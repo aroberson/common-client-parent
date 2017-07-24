@@ -159,7 +159,7 @@ public abstract class AbstractServiceCallbackManager implements ITimeoutTaskMana
     }
 
     /**
-     * This returns the <code>IServiceCallback></code> for the specified request identifier, or null.
+     * This returns the IServiceCallback for the specified request identifier, or null.
      * 
      * @param requestId
      *            The request identifier.
@@ -194,9 +194,8 @@ public abstract class AbstractServiceCallbackManager implements ITimeoutTaskMana
      * This cancels the request with the specified identifier.
      * 
      * @param requestId
-     *            The request identifier.
-     * 
-     * @since 1.0
+     *            The request identifier
+     * @return whether the request was cancelled or not
      */
     public boolean cancel(final String requestId)
     {

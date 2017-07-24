@@ -2,10 +2,14 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <packaging>pom</packaging>
+    <!--
+    Copyright (c) 2017 Dell Inc. or its subsidiaries.  All Rights Reserved.
+    -->
+
     <groupId>com.dell.cpsd.common.client</groupId>
     <artifactId>common-client-parent</artifactId>
-    <version>1.3-SNAPSHOT</version>
+    <version>1.3.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
 
     <parent>
         <groupId>com.dell.cpsd</groupId>
@@ -21,7 +25,12 @@
         <connection>scm:git:https://github.com/dellemc-symphony/common-client-parent.git</connection>
         <developerConnection>scm:git:https://github.com/dellemc-symphony/common-client-parent.git</developerConnection>
         <url>https://github.com/dellemc-symphony/common-client-parent</url>
+        <tag>HEAD</tag>
     </scm>
+
+    <properties>
+        <maven-compiler-plugin.version>3.2</maven-compiler-plugin.version>
+    </properties>
 
 
     <licenses>
@@ -113,7 +122,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.2</version>
+                <version>${maven-compiler-plugin.version}</version>
             </plugin>
         </plugins>
     </build>

@@ -36,8 +36,6 @@ public class ServiceTimeout
      *            The request identifier.
      * @param timeout
      *            The configured timeout
-     * @param message
-     *            The timeout message.
      * 
      * @since 1.0
      */

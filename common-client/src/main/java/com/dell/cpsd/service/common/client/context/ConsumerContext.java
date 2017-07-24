@@ -37,10 +37,9 @@ public class ConsumerContext
 
     /**
      * This returns the consumer uuid.
-     * 
-     * @return The consumer uuid.
-     * 
-     * @since 1.0
+     * @param environment
+     *            Environment context from which consumer uuid has to be got
+     * @return consumeruuid string from the environment
      */
     public static String getConsumerUuid(final Environment environment)
     {
