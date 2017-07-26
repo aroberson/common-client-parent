@@ -101,6 +101,12 @@
             <organization>com.dell.cpsd</organization>
             <organizationUrl>https://github.com/joz73</organizationUrl>
         </developer>
+        <developer>
+            <name>Linjong Fogarty</name>
+            <email>linjong.fogarty@dell.com</email>
+            <organization>com.dell.cpsd</organization>
+            <organizationUrl>https://github.com/fogarl1</organizationUrl>
+        </developer>
     </developers>
 
     <modules>
