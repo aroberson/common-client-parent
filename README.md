@@ -2,7 +2,7 @@
 [![Build Status](https://travis-ci.org/dellemc-symphony/common-client-parent.svg?branch=master)](https://travis-ci.org/dellemc-symphony/common-client-parent)
 [![Slack](http://community.codedellemc.com/badge.svg)](https://codecommunity.slack.com/messages/symphony)
 [![Codecov](https://img.shields.io/codecov/c/github/dellemc-symphony/common-client-parent.svg)](https://codecov.io/gh/dellemc-symphony/common-client-parent)
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.dell.cpsd.common.client/common-client-parent/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.dell.cpsd.common.client/common-client-parent)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.dell.cpsd/common-client-parent/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.dell.cpsd/common-client-parent)
 [![Semver](http://img.shields.io/SemVer/2.0.0.png)](http://semver.org/spec/v2.0.0.html)
 # common-client-parent
 
