@@ -107,6 +107,12 @@
             <organization>com.dell.cpsd</organization>
             <organizationUrl>https://github.com/fogarl1</organizationUrl>
         </developer>
+        <developer>
+            <name>Brendan Hoey</name>
+            <email>brendan.hoey@dell.com</email>
+            <organization>com.dell.cpsd</organization>
+            <organizationUrl>https://github.com/visionless</organizationUrl>
+        </developer>
     </developers>
 
     <modules>
