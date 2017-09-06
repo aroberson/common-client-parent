@@ -31,7 +31,7 @@ pipeline {
                 doCheckout()
             }
         }
-        stage('.travis.yml Validation') {
+        stage('TravisCI Linter') {
             steps {
                 doTravisLint()
             }
