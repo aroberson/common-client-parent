@@ -6,6 +6,9 @@ pipeline {
     triggers {
         upstream(upstreamProjects: UPSTREAM_TRIGGERS, threshold: hudson.model.Result.SUCCESS)
     }
+    parameters {
+       choice(choices: 'ON\nOFF', description: 'Please select appropriate flag', name: 'Deploy_Stage')
+    }
     agent {
         node {
             label 'maven-builder'
