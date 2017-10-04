@@ -29,6 +29,7 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 
 import static org.hamcrest.CoreMatchers.containsString;
+import static org.hamcrest.CoreMatchers.startsWith;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
@@ -78,6 +79,7 @@ public class SSHClientTest
     private String password    = "the_password";
     private String localPath   = "src/test/resources/test.txt";
     private String remotePath  = "/remote/file/path/test.txt";
+    private String myRemotePath  = "path/";
     private int    maxDuration = 0;
     private String sshCommandResponseString;
 
@@ -323,6 +325,23 @@ public class SSHClientTest
         catch (IOException ex)
         {
             assertThat(ex.getMessage().toLowerCase(), containsString("error sending file using scp"));
+        }
+    }
+
+    @Test
+    public void createRemoteDirectory()  throws IOException, JSchException {
+        doReturn(this.session).when(this.jsch).getSession(anyString(), anyString(), anyInt());
+        doThrow(new JSchException("some-error")).when(this.session).openChannel(anyString());
+        this.client.openConnection();
+
+        try
+        {
+            this.client.createRemoteDirectory(this.myRemotePath);
+            fail("Expected exception to be thrown here but was not");
+        }
+        catch (IOException ex)
+        {
+            assertThat(ex.getMessage(), containsString("Failed to create create remote directory"));
         }
     }
 

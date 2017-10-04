@@ -236,6 +236,30 @@ public class SSHClient
         }
     }
 
+    /**
+     *
+     * @param remotePath Directory to create on target machine
+     *                   Note this method assumes ownership of target directory by executor
+     * @throws IOException
+     */
+    public void createRemoteDirectory(final String remotePath) throws IOException
+    {
+        String mkdir = "mkdir -p %s";
+        SSHCommandResponse responseMkdir = null;
+        try
+        {
+            responseMkdir = executeCommand(String.format(mkdir, remotePath));
+            if (responseMkdir.getExitCode() != 0)
+            {
+                throw new IOException(String.format("Failed to create create remote directory %s", responseMkdir.getError()));
+            }
+        }
+        catch(Exception ex) {
+            logger.error("Failed to create create remote directory " + remotePath);
+            throw new IOException("Failed to create create remote directory");
+        }
+    }
+
     public void downloadFile(String remotePath, String localPath) throws IOException
     {
         logger.debug("SSHClient - Downloading file from {}@{}:{} to {}", username, hostname, remotePath, localPath);
