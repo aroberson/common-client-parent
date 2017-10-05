@@ -133,11 +133,20 @@ public class SSHClient
         return (session != null && session.isConnected());
     }
 
-    public void copyFile(String localPath, String remotePath) throws IOException
+    /**
+     * Remote transfer of file via scp
+     * Note this does not create directory structure please use createRemoteDirectory(final String remotePath)  if needed
+     * Also it assumes user has rights in the target folder
+     *
+     * @param localPathWithFile - this is the local path with the file you are copying
+     * @param remotePathWithFile - this is the remote path with the file name again you are copying - really this param should just be the path
+     * @throws IOException
+     */
+    public void copyFile(String localPathWithFile, String remotePathWithFile) throws IOException
     {
-        logger.debug("SSHClient - Copying file from {} to {}@{}:{}", localPath, username, hostname, remotePath);
+        logger.debug("SSHClient - Copying file from {} to {}@{}:{}", localPathWithFile, username, hostname, remotePathWithFile);
 
-        File sourceFile = new File(localPath);
+        File sourceFile = new File(localPathWithFile);
         FileInputStream fis = null;
         InputStream in = null;
         OutputStream out = null;
@@ -151,7 +160,7 @@ public class SSHClient
                 throw new IOException(String.format("Could not open SSH exec channel to %s", hostname));
             }
 
-            channel.setCommand(String.format(SCP_FILE_COMMAND, remotePath));
+            channel.setCommand(String.format(SCP_FILE_COMMAND, remotePathWithFile));
 
             out = channel.getOutputStream();
             in = channel.getInputStream();
@@ -172,7 +181,7 @@ public class SSHClient
             out.flush();
             verifyAck(in);
 
-            fis = new FileInputStream(localPath);
+            fis = new FileInputStream(localPathWithFile);
             MessageDigest messageDigest = MessageDigest.getInstance("MD5");
             DigestInputStream dis = new DigestInputStream(fis, messageDigest);
             IOUtils.copy(dis, out);
@@ -183,7 +192,7 @@ public class SSHClient
             verifyAck(in);
 
             String localDigest = Hex.encodeHexString(messageDigest.digest());
-            SSHCommandResponse response = executeCommand(String.format(MD5_CHECKSUM, remotePath + tempFileName));
+            SSHCommandResponse response = executeCommand(String.format(MD5_CHECKSUM, remotePathWithFile));
             if (response.getExitCode() != 0)
             {
                 throw new IOException(String.format("Failed to run md5sum to calculate checksum: %s", response.getError()));
@@ -195,14 +204,14 @@ public class SSHClient
                 throw new IOException("Error sending file using SCP: MD5 digest differs");
             }
 
-            response = executeCommand(String.format(MV_COMMAND, remotePath + tempFileName, remotePath + sourceFile.getName()));
+            response = executeCommand(String.format(MV_COMMAND, remotePathWithFile, remotePathWithFile));
 
             if (response.getExitCode() != 0)
             {
                 throw new IOException(String.format("Failed to rename file after upload: %s", response.getError()));
             }
 
-            logger.debug("SSHClient - Successfully copied file from " + "{} to {}@{}:{}", localPath, username, hostname, remotePath);
+            logger.debug("SSHClient - Successfully copied file from " + "{} to {}@{}:{}", localPathWithFile, username, hostname, remotePathWithFile);
         }
         catch (JSchException e)
         {
