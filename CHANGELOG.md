@@ -19,4 +19,5 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
  - The initial common-client-parent binary files.
  
- [2.0.0]: https://github.com/dellemc-symphony/common-client-parent/compare/1.3.0...2.0.0
+ [2.0.0]: https://github.com/dellemc-symphony/common-client-parent/compare/1.3.0...2.1.0
+ [2.1.0]: https://github.com/dellemc-symphony/common-client-parent/compare/2.0.0...2.1.0
